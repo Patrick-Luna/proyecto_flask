@@ -1,5 +1,42 @@
 {% extends "base.html" %}
+
 {% block content %}
-    <h1>Bienvenido a Mi Sistema Integrado</h1>
-    {% if mensaje %}<p><strong>{{ mensaje }}</strong></p>{% endif %}
+<div style="max-width: 800px; margin: auto; font-family: Arial, sans-serif;">
+    <h2 style="color: #2c3e50;">Sistema de Inventario - Semana 11</h2>
+    
+    <div style="background: #f4f4f4; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+        <h3>Añadir Nuevo Producto</h3>
+        <form action="/agregar" method="POST" style="display: flex; gap: 10px; flex-wrap: wrap;">
+            <input type="text" name="nombre" placeholder="Nombre" required style="padding: 8px;">
+            <input type="number" name="cantidad" placeholder="Cantidad" required style="padding: 8px;">
+            <input type="number" step="0.01" name="precio" placeholder="Precio" required style="padding: 8px;">
+            <button type="submit" style="background: #27ae60; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px;">Guardar</button>
+        </form>
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead>
+            <tr style="background: #2c3e50; color: white;">
+                <th style="padding: 10px; border: 1px solid #ddd;">ID</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Nombre</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Cantidad</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Precio</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in productos %}
+            <tr>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ p.id }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ p.nombre }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ p.cantidad }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">${{ p.precio }}</td>
+                <td style="padding: 10px; border: 1px solid #ddd;">
+                    <a href="/eliminar/{{ p.id }}" style="color: #e74c3c; text-decoration: none; font-weight: bold;">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
