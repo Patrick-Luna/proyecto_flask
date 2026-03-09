@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Persistencia de Datos (Archivos Locales)</h2>
-
-<h3>Contenido del archivo TXT:</h3>
+<h2>Lectura de Archivo de Texto (Semana 12)</h2>
 <ul>
-    {% for linea in txt %}
-    <li>{{ linea }}</li>
-    {% endfor %}
+    {% if contenido_txt %}
+        {% for linea in contenido_txt %}
+            <li>{{ linea }}</li>
+        {% endfor %}
+    {% else %}
+        <li>No hay datos en el archivo TXT todavía. Agrega un producto primero.</li>
+    {% endif %}
 </ul>
-
-<p><a href="/">Volver al Inventario</a></p>
+<p><a href="/">Volver al Inicio</a></p>
 {% endblock %}
